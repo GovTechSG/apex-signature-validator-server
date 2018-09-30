@@ -3,6 +3,7 @@
   "version": "0.3.7",
   "description": "APEX micro service and dev tool for testing level 0 - 2 requests and verifying JOSE (JSON Object Signing and Encryption) response",
   "scripts": {
+    "start": "node server.js",
     "build": "webpack --progress --colors --env.production",
     "devbuild": "webpack-dev-server --progress --colors --env.devbuild",
     "devserver": "webpack-dev-server",
@@ -18,7 +19,11 @@
     "angular-animate": "^1.6.4",
     "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-notification": "^0.3.6",
+
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.3",
     "bootstrap": "^3.3.7",
+    "express": "^4.16.3",
     "jose": "^0.3.2",
     "jquery": "^3.3.1",
     "jsrsasign": "^8.0.7",
