@@ -10,6 +10,9 @@ The Apex Signature Validator is an AngularJS application that assists APEX API c
 
 You can find out more about Apex signature generation from our reference Node.js implementation at https://github.com/GovTechSG/node-apex-api-security.
 
+# Microservice
+This fork includes a microservice that serves the validator frontend and provides a backend to route test requests through. This allows users to make test API calls without having to configure CORS on their Apex gateway.
+
 ## Table of contents
 - [APEX Signature Validator](#apex-signature-validator)
   * [Running Apex Signature Validator](#running-apex-signature-validator)
