@@ -374,26 +374,22 @@ let signatureValidatorTemplate = `
             </div>
         </div>
     </div>
-    <div class="panel-body" ng-class="{'bg-success': $ctrl.apiTest.status < 300, 'bg-warning': 300 <= $ctrl.apiTest.status && $ctrl.apiTest.status < 400, 'bg-danger': (400 <= $ctrl.apiTest.status && $ctrl.apiTest.status < 600) || $ctrl.apiTest.status === -1}">
+    <div class="panel-body" ng-class="{'bg-success': $ctrl.apiTest.response.status < 300, 'bg-warning': 300 <= $ctrl.apiTest.response.status && $ctrl.apiTest.response.status < 400, 'bg-danger': 400 <= $ctrl.apiTest.response.status && $ctrl.apiTest.response.status < 600}">
         <div class="row">
             <div class="col-sm-12">
                 <label for="apiTestConfig">API Test Request Config </label> 
-                <textarea rows="4" name=apiTestConfig" id="apiTestConfig" class="form-control code" disabled>{{ $ctrl.apiTest.config.method }} {{ $ctrl.apiTest.config.url }}
-{{ $ctrl.getApiTestHeaders($ctrl.apiTest.config.headers) }}
+                <textarea rows="4" name=apiTestConfig" id="apiTestConfig" class="form-control code" disabled>{{ $ctrl.apiTest.request.method }} {{ $ctrl.apiTest.request.url }}
+{{ $ctrl.getApiTestHeaders($ctrl.apiTest.request.headers) }}
                 </textarea>
 
                 <br>
-            
-                <strong>API Test Request Status:</strong> {{ $ctrl.apiTest.xhrStatus }}<span ng-if="$ctrl.apiTest.xhrStatus === 'error'">: the http request could not be completed</span>
 
-                <br>
-
-                <strong>API Test Response Status:</strong> {{ $ctrl.apiTest.status }} {{ $ctrl.apiTest.statusText }}
+                <strong>API Test Response Status:</strong> {{ $ctrl.apiTest.response.status }}
 
                 <br>
 
                 <label for="apiTestResponse">API Test Response Data</label>
-                <textarea rows="4" name="apiTestResponse" id="apiTestResponse" class="form-control code" disabled>{{$ctrl.apiTest.data | json}}</textarea>
+                <textarea rows="4" name="apiTestResponse" id="apiTestResponse" class="form-control code" disabled>{{$ctrl.apiTest.response.body | json}}</textarea>
             </div>            
         </div>
     </div>
@@ -697,7 +693,7 @@ function signatureValidatorController($scope, config, Notification, TestService,
         }
         return TestService.sendTestRequest(controller.apiUrl, controller.httpMethod, controller.selectedLevel, requestOptions)
             .then(response => {
-                controller.apiTest = response;
+                controller.apiTest = response.data;
             })
             .catch(error => {
                 controller.apiTest = error;

@@ -46,7 +46,7 @@ module.exports = (env = {}) => { // set env as empty object if unset from cli
                     use: [{
                         loader: 'url-loader',
                         options: {
-                            limit: 1000000, // byte limit to inline files as data URL
+                            limit: 8182, // byte limit to inline files as data URL
                             name: 'assets/[name].[ext]' // path to file for file-loader fallback
                         }
                     }]
