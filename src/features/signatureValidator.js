@@ -374,7 +374,7 @@ let signatureValidatorTemplate = `
             </div>
         </div>
     </div>
-    <div class="panel-body" ng-class="{'bg-success': $ctrl.apiTest.response.status < 300, 'bg-warning': 300 <= $ctrl.apiTest.response.status && $ctrl.apiTest.response.status < 400, 'bg-danger': 400 <= $ctrl.apiTest.response.status && $ctrl.apiTest.response.status < 600}">
+    <div class="panel-body" ng-class="{'bg-success': $ctrl.apiTest.response.status < 300, 'bg-warning': 300 <= $ctrl.apiTest.response.status && $ctrl.apiTest.response.status < 400, 'bg-danger': (400 <= $ctrl.apiTest.response.status && $ctrl.apiTest.response.status < 600) || $ctrl.apiTest.response.error}">
         <div class="row">
             <div class="col-sm-12">
                 <label for="apiTestConfig">API Test Request Config </label> 
@@ -389,7 +389,7 @@ let signatureValidatorTemplate = `
                 <br>
 
                 <label for="apiTestResponse">API Test Response Data</label>
-                <textarea rows="4" name="apiTestResponse" id="apiTestResponse" class="form-control code" disabled>{{$ctrl.apiTest.response.body | json}}</textarea>
+                <textarea rows="4" name="apiTestResponse" id="apiTestResponse" class="form-control code" disabled>{{ $ctrl.getApiTestResponse() }}</textarea>
             </div>            
         </div>
     </div>
@@ -416,6 +416,7 @@ function signatureValidatorController($scope, config, Notification, TestService,
     controller.sendTestRequest = sendTestRequest;
     controller.signatureMethod = signatureMethod;
     controller.signatureGenerated = signatureGenerated;
+    controller.getApiTestResponse = getApiTestResponse;
     controller.showOptions = showOptions;
 
     $scope.formSignature = formSignature; // Main signature generation function
@@ -627,6 +628,15 @@ function signatureValidatorController($scope, config, Notification, TestService,
         return controller.basestring && controller.basestring.length > 0 && controller.authHeader && controller.authHeader.length > 0;
     }
 
+    function getApiTestResponse() {
+        if (!controller.apiTest.response) return 'Error encountered.';
+        if (controller.apiTest.response.error) {
+            return `${controller.apiTest.response.code} ${controller.apiTest.response.text}`;
+        } else {
+            return controller.apiTest.response.text;
+        }
+    }
+
     function compareBasestring(generated, input) {
         if (input == null) {
             input = '';
@@ -693,7 +703,7 @@ function signatureValidatorController($scope, config, Notification, TestService,
         }
         return TestService.sendTestRequest(controller.apiUrl, controller.httpMethod, controller.selectedLevel, requestOptions)
             .then(response => {
-                controller.apiTest = response.data;
+                controller.apiTest = response.data || response;
             })
             .catch(error => {
                 controller.apiTest = error;

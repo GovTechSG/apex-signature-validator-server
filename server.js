@@ -22,6 +22,10 @@ app.post('/send-test-request', async (req, res) => {
     if (requestParams.data) {
         testRequest.send(requestParams.data);
     }
+    testRequest.timeout({
+        response: 5000,  // Wait 5s for the server to start sending,
+        deadline: 10000, // but allow 10s for the file to finish loading.
+    })
     try {
         await testRequest;
 
@@ -40,9 +44,40 @@ app.post('/send-test-request', async (req, res) => {
         }
         res.json(testResponse);
     } catch (err) {
-        res.json(err)
+        // Server response
+        if (err.response) {
+            let testResponse = {
+                request: {
+                    method: err.response.request.method,
+                    url: err.response.request.url,
+                    headers: err.response.request.header
+                },
+                response: {
+                    status: err.response.status,
+                    headers: err.response.header,
+                    body: err.response.body,
+                    text: err.response.text
+                }
+            }
+            res.json(testResponse)
+        } else if (err.code && err.message && err.stack) {
+            // NodeJS error
+            res.json({
+                request: {
+                    method: testRequest.method,
+                    url: testRequest.url,
+                    headers: testRequest.header
+                },
+                response: {
+                    error: true,
+                    code: err.code,
+                    text: err.message,
+                }
+            })
+        } else {
+            throw err;
+        }
     }
-
 })
 
 app.use((err, req, res, next) => {
