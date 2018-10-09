@@ -1,5 +1,5 @@
 {
-  "name": "apex-signature-validator",
+  "name": "apex-signature-validator-server",
   "version": "1.0.0",
   "description": "APEX micro service and dev tool for testing level 0 - 2 requests and verifying JOSE (JSON Object Signing and Encryption) response",
   "scripts": {
@@ -8,8 +8,8 @@
     "devui": "webpack --watch",
     "devserver": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "snyk protect",
+    "start": "node server.js"
   },
   "license": "MIT",
   "dependencies": {
