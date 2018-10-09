@@ -442,7 +442,7 @@ function signatureValidatorController($scope, config, Notification, TestService,
         controller.requestBody = {
             json: '',
             urlencoded: []
-        }
+        };
 
         $scope.httpMethods = config.main.httpMethods;
         controller.httpMethod = $scope.httpMethods[0];
@@ -457,12 +457,12 @@ function signatureValidatorController($scope, config, Notification, TestService,
 
     function signatureMethod() {
         switch (controller.selectedLevel) {
-            case 0:
-                return '';
-            case 1:
-                return config.main.sigMethod.level1;
-            case 2:
-                return config.main.sigMethod.level2;
+        case 0:
+            return '';
+        case 1:
+            return config.main.sigMethod.level1;
+        case 2:
+            return config.main.sigMethod.level2;
         }
     }
 
@@ -482,21 +482,21 @@ function signatureValidatorController($scope, config, Notification, TestService,
     function authPrefix() {
         if (controller.gatewayZone === config.constants.gatewayZones.internet) {
             switch (controller.selectedLevel) {
-                case 1:
-                    return 'apex_l1_eg';
-                case 2:
-                    return 'apex_l2_eg';
-                default:
-                    return '';
+            case 1:
+                return 'apex_l1_eg';
+            case 2:
+                return 'apex_l2_eg';
+            default:
+                return '';
             }
         } else if (controller.gatewayZone === config.constants.gatewayZones.intranet) {
             switch (controller.selectedLevel) {
-                case 1:
-                    return 'apex_l1_ig';
-                case 2:
-                    return 'apex_l2_ig';
-                default:
-                    return '';
+            case 1:
+                return 'apex_l1_ig';
+            case 2:
+                return 'apex_l2_ig';
+            default:
+                return '';
             }
         }
     }
@@ -607,16 +607,16 @@ function signatureValidatorController($scope, config, Notification, TestService,
      */
     function validateForm(level) {
         switch (level) {
-            case 0:
-                return controller.apiUrl && controller.apiUrl.length > 0;
-            case 1:
-                return controller.apiUrl && controller.apiUrl.length > 0 &&
+        case 0:
+            return controller.apiUrl && controller.apiUrl.length > 0;
+        case 1:
+            return controller.apiUrl && controller.apiUrl.length > 0 &&
                     controller.appId && controller.appId.length > 0 &&
                     controller.appSecret && controller.appSecret.length > 0 &&
                     controller.nonce && controller.nonce.length > 0 &&
                     controller.timestamp && controller.timestamp.length > 0;
-            case 2:
-                return controller.apiUrl && controller.apiUrl.length > 0 &&
+        case 2:
+            return controller.apiUrl && controller.apiUrl.length > 0 &&
                     controller.appId && controller.appId.length > 0 &&
                     controller.pem && controller.pem.length > 0 &&
                     controller.nonce && controller.nonce.length > 0 &&
@@ -780,8 +780,8 @@ function signatureValidatorController($scope, config, Notification, TestService,
                 return {
                     key: urlencodedBody.key,
                     value: urlencodedBody.value
-                }
-            })
+                };
+            });
         }        
         if (controller.selectedLevel === 1) {
             currentConfig.appSecret = controller.appSecret;

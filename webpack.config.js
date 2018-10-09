@@ -6,7 +6,6 @@ const version = require('./package.json').version;
 const path = require('path');
 
 module.exports = (env = {}) => { // set env as empty object if unset from cli
-    console.log('Building version: ' + version);
     let mode;
     if (env.production || env.devbuild) { mode = 'production'; }
     else { mode = 'development'; }
