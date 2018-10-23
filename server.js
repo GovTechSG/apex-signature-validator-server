@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('superagent');
+const morgan = require('morgan');
 
 const app = express();
 const port = 3544;
 
 app.use(express.static('dist'));
 app.use(bodyParser.json());
+app.use(morgan('combined'));
 
 app.get('/', (req, res) => {
     res.sendFile('dist/index.html');
