@@ -29,6 +29,7 @@
     "querystring": "^0.2.0",
     "randombytes": "^2.0.6",
     "superagent": "^4.0.0-beta.5",
+    "superagent-proxy": "^2.0.0",
     "urlsafe-base64": "1.0.0"
   },
   "devDependencies": {

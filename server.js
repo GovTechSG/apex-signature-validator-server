@@ -1,10 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('superagent');
+const superagentProxy = require('superagent-proxy');
+superagentProxy(request);
 const morgan = require('morgan');
 
 const app = express();
 const port = 3544;
+
+const http_proxy = process.env.http_proxy || process.env.https_proxy || undefined;
 
 app.use(express.static('dist'));
 app.use(bodyParser.json());
@@ -23,6 +27,9 @@ app.post('/send-test-request', async (req, res) => {
     }
     if (requestParams.data) {
         testRequest.send(requestParams.data);
+    }
+    if (http_proxy) {
+        testRequest.proxy(http_proxy);
     }
     testRequest.timeout({
         response: 5000,  // Wait 5s for the server to start sending,
