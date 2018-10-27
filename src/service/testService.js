@@ -123,7 +123,7 @@ function testService($http, UtilityService, $httpParamSerializerJQLike) {
                 url: url,
                 headers: {},
                 timeout: 10000
-            }
+            };
             if (method !== 'GET' && options.requestBody) {
                 if (options.requestBodyType === 'application/x-www-form-urlencoded') {
                     requestOptions.data = $httpParamSerializerJQLike(options.requestBody);

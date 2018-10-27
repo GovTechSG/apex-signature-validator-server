@@ -378,7 +378,7 @@ let signatureValidatorTemplate = `
             </div>
         </div>
     </div>
-    <div class="card-body" ng-class="{'bg-success': $ctrl.apiTest.status < 300, 'bg-warning': 300 <= $ctrl.apiTest.status && $ctrl.apiTest.status < 400, 'bg-danger': (400 <= $ctrl.apiTest.status && $ctrl.apiTest.status < 600) || $ctrl.apiTest.status === -1}">
+    <div class="card-body" ng-class="{'bg-success': $ctrl.apiTest.response.status < 300, 'bg-warning': 300 <= $ctrl.apiTest.response.status && $ctrl.apiTest.response.status < 400, 'bg-danger': (400 <= $ctrl.apiTest.response.status && $ctrl.apiTest.response.status < 600) || $ctrl.apiTest.response.error}">
         <div class="row">
             <div class="col-sm-12 test-response">
                 <label for="apiTestConfig">API Test Request Config </label> 
