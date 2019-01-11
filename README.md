@@ -20,7 +20,13 @@ $ docker run --name {container_name} \
 The container will serve the signature validator front-end (e.g. http://localhost:3544, or your own webserver URL) and expose an API that the front-end will use to make HTTP calls.
 
 ## Important
+### Upstream changes
 
 - Based on: https://github.com/GovTechSG/apex-signature-validator. A more comprehensive readme is hosted there.
 
-- Apex Signature Validator has been tested on Google Chrome, Firefox and Internet Explorer 11.
+- To merge frontend changes, add https://github.com/GovTechSG/apex-signature-validator as a remote and pull. Recommend pulling into a branch that isn't master:
+```bash
+$ git branch -b frontend # use a non-master branch
+$ git remote add frontend https://github.com/GovTechSG/apex-signature-validator
+$ git pull frontend master
+```
