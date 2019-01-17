@@ -14,9 +14,7 @@ app.use(express.static('dist'));
 app.use(bodyParser.json());
 app.use(morgan('combined'));
 
-app.get('/', (req, res) => {
-    res.sendFile('dist/index.html');
-});
+app.use(express.static('dist'));
 
 app.post('/send-test-request', async (req, res) => {
     let requestParams = req.body.requestOptions;

@@ -25,7 +25,7 @@ function testRequestService($http, $httpParamSerializerJQLike) {
             if (options.authHeader) {
                 requestOptions.headers['Authorization'] = options.authHeader;
             }
-            return $http(requestOptions);
+            return $http.post('/send-test-request', {requestOptions});
         }
     };
 }

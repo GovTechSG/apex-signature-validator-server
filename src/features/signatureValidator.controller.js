@@ -23,6 +23,7 @@ function signatureValidatorController($scope, Notification, testRequestService, 
     controller.changeRequestBodyType = changeRequestBodyType;
     controller.generateAuthHeader = generateAuthHeader;
     controller.getApiTestHeaders = getApiTestHeaders;
+    controller.getApiTestResponse = getApiTestResponse;
     controller.getApiTestResponseClass = getApiTestResponseClass;
     controller.formSignatureUrls = formSignatureUrls;
     controller.onAllowCustomSignatureUrlChange = onAllowCustomSignatureUrlChange;
@@ -281,7 +282,7 @@ function signatureValidatorController($scope, Notification, testRequestService, 
         }
         return testRequestService.sendTestRequest(controller.apiUrl, controller.httpMethod, requestOptions)
             .then(response => {
-                controller.apiTest = response;
+                controller.apiTest = response.data || response;
             })
             .catch(error => {
                 controller.apiTest = error;
@@ -365,11 +366,20 @@ function signatureValidatorController($scope, Notification, testRequestService, 
         return headerString;
     }
 
+    function getApiTestResponse() {
+        if (!controller.apiTest.response) return 'Error encountered.';
+        if (controller.apiTest.response.error) {
+            return `${controller.apiTest.response.code} ${controller.apiTest.response.text}`;
+        } else {
+            return controller.apiTest.response.text;
+        }
+    }
+
     function getApiTestResponseClass() {
         return {
-            'bg-success': controller.apiTest.status < 300,
-            'bg-warning': 300 <= controller.apiTest.status && controller.apiTest.status < 400,
-            'bg-danger': (400 <= controller.apiTest.status && controller.apiTest.status < 600) || controller.apiTest.status === -1
+            'bg-success': controller.apiTest.response.status < 300,
+            'bg-warning': 300 <= controller.apiTest.response.status && controller.apiTest.response.status < 400,
+            'bg-danger': (400 <= controller.apiTest.response.status && controller.apiTest.response.status < 600) || controller.apiTest.response.error
         };
     }
 }
