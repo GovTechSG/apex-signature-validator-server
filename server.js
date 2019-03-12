@@ -30,8 +30,8 @@ app.post('/send-test-request', async (req, res) => {
         testRequest.proxy(http_proxy);
     }
     testRequest.timeout({
-        response: 5000,  // Wait 5s for the server to start sending,
-        deadline: 10000, // but allow 10s for the file to finish loading.
+        response: 15000,  // Wait 15s for the server to start sending,
+        deadline: 25000, // but allow 25s for the file to finish loading.
     });
     try {
         await testRequest;
