@@ -24,9 +24,10 @@ The container will serve the signature validator front-end (e.g. http://localhos
 
 - Based on: https://github.com/GovTechSG/apex-signature-validator. A more comprehensive readme is hosted there.
 
-- To merge frontend changes, add https://github.com/GovTechSG/apex-signature-validator as a remote and pull. Recommend pulling into a branch that isn't master:
+- To merge frontend changes, add https://github.com/GovTechSG/apex-signature-validator as a remote and pull from its master. Recommend pulling into a branch that isn't master:
 ```bash
 $ git branch -b frontend # use a non-master branch
 $ git remote add frontend https://github.com/GovTechSG/apex-signature-validator
 $ git pull frontend master
 ```
+- After pulling changes, do a PR from the frontend branch to master.
