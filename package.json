@@ -24,7 +24,7 @@
     "bootstrap": "^4.3.1",
     "express": "^4.16.3",
     "jose": "^0.3.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "jsrsasign": "^8.0.7",
     "lodash": "^4.17.11",
     "popper.js": "^1.14.4",
