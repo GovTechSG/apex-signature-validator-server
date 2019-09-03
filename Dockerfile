@@ -4,13 +4,11 @@ ENV HOME=/home/node
 
 WORKDIR ${HOME}
 
-COPY . ${HOME}
+COPY package.json .
 
 RUN npm install
 
 RUN npm run build
-
-RUN npm install --production
 
 ENV NODE_ENV=production
 

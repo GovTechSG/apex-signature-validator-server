@@ -31,39 +31,47 @@ let paramsModalTemplate = `
     
 </div>`;
 
-paramsModalController.$inject = ['$scope', '$uibModalInstance', 'currentConfig'];
+paramsModalController.$inject = [
+  "$scope",
+  "$uibModalInstance",
+  "currentConfig"
+];
 
 function paramsModalController($scope, $uibModalInstance, currentConfig) {
-    const controller = this;
+  const controller = this;
 
-    // Initialization
-    controller.currentConfig = currentConfig;
-    controller.currentConfigString = JSON.stringify(currentConfig, null, 2);
+  // Initialization
+  controller.currentConfig = currentConfig;
+  controller.currentConfigString = JSON.stringify(currentConfig, null, 2);
 
-    $scope.saveConfigAsJson = function() {
-        let blob = new Blob([controller.currentConfigString], {
-            type: 'application/json;charset=utf-8;'
-        });
-        let downloadLink = angular.element('<a></a>');
-        downloadLink.attr('href', window.URL.createObjectURL(blob));
-        downloadLink.attr('download', 'savedInputs.json');
-        downloadLink[0].click();
-    };
+  $scope.saveConfigAsJson = function() {
+    let blob = new Blob([controller.currentConfigString], {
+      type: "application/json;charset=utf-8;"
+    });
+    let downloadLink = angular.element("<a></a>");
+    downloadLink.attr("href", window.URL.createObjectURL(blob));
+    downloadLink.attr("download", "savedInputs.json");
+    downloadLink[0].click();
+  };
 
-    $scope.set = function() {
-        $uibModalInstance.close(JSON.parse(controller.currentConfigString));
-    };
+  $scope.set = function() {
+    $uibModalInstance.close(JSON.parse(controller.currentConfigString));
+  };
 
-    $scope.cancel = function() {
-        $uibModalInstance.dismiss('cancelled');
-    };
+  $scope.cancel = function() {
+    $uibModalInstance.dismiss("cancelled");
+  };
 
-    $scope.parseInputFile = function(fileText) {
-        controller.currentConfigString = JSON.stringify(JSON.parse(fileText), null, 2);
-    };
+  $scope.parseInputFile = function(fileText) {
+    controller.currentConfigString = JSON.stringify(
+      JSON.parse(fileText),
+      null,
+      2
+    );
+  };
 }
 
 export default {
-    template: paramsModalTemplate,
-    controller: paramsModalController
+  template: paramsModalTemplate,
+  controller: paramsModalController
 };

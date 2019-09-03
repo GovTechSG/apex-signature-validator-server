@@ -1,3 +1,7 @@
+header {
+    margin-bottom: 16px;
+}
+
 .test-response textarea {
     min-height: 8em;
     max-height: 30em;
