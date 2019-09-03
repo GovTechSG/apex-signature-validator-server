@@ -1,12 +1,15 @@
-FROM node:10-alpine
+FROM node:lts-alpine
 
 ENV HOME=/home/node
 
 WORKDIR ${HOME}
 
 COPY package.json .
+COPY package-lock.json .
 
 RUN npm install
+
+COPY . .
 
 RUN npm run build
 

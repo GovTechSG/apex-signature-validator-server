@@ -4,9 +4,9 @@
   "description": "APEX micro service and dev tool for testing level 0 - 2 requests and verifying JOSE (JSON Object Signing and Encryption) response",
   "scripts": {
     "build": "webpack --progress --colors --env.production",
-    "devuiserver": "webpack-dev-server",
-    "devui": "webpack --watch",
-    "devserver": "nodemon server.js",
+    "dev:uiserver": "webpack-dev-server",
+    "dev:ui": "webpack --watch",
+    "dev:server": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "snyk protect",
     "start": "node server.js"
