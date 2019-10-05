@@ -8,8 +8,9 @@
     "dev:ui": "webpack --watch",
     "dev:server": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "snyk protect",
-    "start": "node server.js"
+    "prepare": "npm run snyk-protect && snyk protect",
+    "start": "node server.js",
+    "snyk-protect": "snyk protect"
   },
   "license": "MIT",
   "dependencies": {
@@ -32,7 +33,8 @@
     "ui-bootstrap4": "^3.0.5",
     "superagent": "^5.1.0",
     "superagent-proxy": "^2.0.0",
-    "urlsafe-base64": "1.0.0"
+    "urlsafe-base64": "1.0.0",
+    "snyk": "^1.231.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -45,7 +47,6 @@
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.19.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "snyk": "^1.88.0",
     "style-loader": "^1.0.0",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.3",
