@@ -22,7 +22,7 @@
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "express": "^4.17.1",
-    "jose": "^0.3.2",
+    "jose": "^1.28.1",
     "jquery": "^3.4.0",
     "jsrsasign": "^8.0.7",
     "lodash": "^4.17.13",
