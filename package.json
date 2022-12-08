@@ -21,7 +21,7 @@
     "morgan": "^1.9.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jose": "^0.3.2",
     "jquery": "^3.4.0",
     "jsrsasign": "^8.0.7",
